@@ -1,5 +1,6 @@
 package com.example.app.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -29,11 +30,11 @@ public class Worker {
             joinColumns = @JoinColumn(name = "worker_id"),
             inverseJoinColumns = @JoinColumn(name = "work_relations_id")
     )
-    private List<WorkRelations> workRelationsList;
+    private List<WorkRelations> workRelationsList = new ArrayList<>();
 
     // One To Many: Worker -> Computer
     @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Computer> computerList;
+    private List<Computer> computerList = new ArrayList<>();
 
     public Worker() {}
 
