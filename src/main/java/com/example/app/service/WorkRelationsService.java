@@ -6,19 +6,20 @@ import com.example.app.dto.UpdateWorkRelationsDTO;
 import com.example.app.entity.WorkRelations;
 import com.example.app.exceptions.NotFoundException;
 import com.example.app.mapper.WorkRelationsMapper;
-import com.example.app.repository.WorkerRelationsRepository;
+import com.example.app.repository.WorkRelationsRepository;
 import com.example.app.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class WorkRelationsService {
 
     @Autowired
-    private WorkerRelationsRepository workerRelationsRepository;
+    private WorkRelationsRepository workerRelationsRepository;
 
     @Autowired
     private WorkerRepository workerRepository;
@@ -56,5 +57,21 @@ public class WorkRelationsService {
         }
     }
 
+    public List<OutgoingWorkRelationsDTO> findAllWorkRelations(){
 
+        List<WorkRelations> workRelationsList = workerRelationsRepository.findAll();
+        return workRelationsMapper.mapToOutGoingDtos(workRelationsList);
+    }
+
+    @Transactional
+    public void deleteWorkRelationsById(Long id) throws NotFoundException {
+
+        if(workerRelationsRepository.exitsById(id)){
+            workerRelationsRepository.deleteById(id);
+        }else {
+            throw new NotFoundException("WorkRelations not found.");
+        }
+    }
+
+    
 }
