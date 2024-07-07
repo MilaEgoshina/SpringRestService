@@ -74,6 +74,7 @@ public class WorkRelationsController {
         }
     }
 
+    @PutMapping("/update")
     public ResponseEntity<Void> updateWorkRelations(@RequestBody UpdateWorkRelationsDTO updateWorkRelationsDTO) {
         try {
             workRelationsService.updateWorkRelations(updateWorkRelationsDTO);
@@ -83,7 +84,7 @@ public class WorkRelationsController {
         }
     }
     @PostMapping("/add-worker/{id}/{workerId}")
-    public ResponseEntity<?> addWorkerToRelations(@PathVariable Long id, @PathVariable Long workerId) {
+    public ResponseEntity<Void> addWorkerToRelations(@PathVariable Long id, @PathVariable Long workerId) {
         try {
             workRelationsService.addWorkerToRelations(id, workerId);
             return ResponseEntity.ok().build();
