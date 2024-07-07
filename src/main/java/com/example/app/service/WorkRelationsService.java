@@ -52,6 +52,7 @@ public class WorkRelationsService {
         }
     }
 
+    @Transactional
     public OutgoingWorkRelationsDTO findWorkRelationsById(Long id) throws NotFoundException{
 
         Optional<WorkRelations> workRelationsOptional = workerRelationsRepository.findById(id);
@@ -63,6 +64,7 @@ public class WorkRelationsService {
         }
     }
 
+    @Transactional
     public List<OutgoingWorkRelationsDTO> findAllWorkRelations(){
 
         List<WorkRelations> workRelationsList = workerRelationsRepository.findAll();
@@ -79,6 +81,7 @@ public class WorkRelationsService {
         }
     }
 
+    @Transactional
     public void addWorkerToRelations(Long id, Long workerId) throws NotFoundException{
         checkExistWorkRelations(id);
         Optional<WorkRelations> workRelationsOptional = workerRelationsRepository.findById(id);
@@ -96,6 +99,7 @@ public class WorkRelationsService {
         }
     }
 
+    @Transactional
     public void deleteWorkerFromRelations(Long id, Long workerId) throws NotFoundException{
 
         checkExistWorkRelations(id);
