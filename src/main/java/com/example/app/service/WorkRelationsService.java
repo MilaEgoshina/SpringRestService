@@ -18,12 +18,9 @@ import java.util.Optional;
 @Service
 public class WorkRelationsService {
 
-
     private final WorkRelationsRepository workerRelationsRepository;
 
-
     private final WorkerRepository workerRepository;
-
 
     private final WorkRelationsMapper workRelationsMapper;
 
