@@ -60,8 +60,14 @@ public class ComputerService {
     }
 
     @Transactional
-    public void deleteComputerById(Long id){
-        computerRepository.deleteById(id);
+    public void deleteComputerById(Long id) throws NotFoundException {
+
+        if(computerRepository.existsById(id)){
+
+            computerRepository.deleteById(id);
+        }else {
+            throw new NotFoundException("Computer not found.");
+        }
     }
 
 }

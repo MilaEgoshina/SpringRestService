@@ -53,7 +53,23 @@ public class WorkerService {
         List<Worker> workerList = workerRepository.findAll();
         return workerMapper.mapToOutGoingDtos(workerList);
     }
-    public void deleteWorkerById(Long id){
-        workerRepository.deleteById(id);
+
+    /*    @Transactional
+    public void deleteWorkRelationsById(Long id) throws NotFoundException {
+
+        if(workerRelationsRepository.exitsById(id)){
+            workerRelationsRepository.deleteById(id);
+        }else {
+            throw new NotFoundException("WorkRelations not found.");
+        }
+    }*/
+    public void deleteWorkerById(Long id) throws NotFoundException {
+
+        if(workerRepository.exitsById(id)){
+            workerRepository.deleteById(id);
+        }else {
+            throw new NotFoundException("Worker not found.");
+        }
+
     }
 }
