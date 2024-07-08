@@ -54,15 +54,6 @@ public class WorkerService {
         return workerMapper.mapToOutGoingDtos(workerList);
     }
 
-    /*    @Transactional
-    public void deleteWorkRelationsById(Long id) throws NotFoundException {
-
-        if(workerRelationsRepository.exitsById(id)){
-            workerRelationsRepository.deleteById(id);
-        }else {
-            throw new NotFoundException("WorkRelations not found.");
-        }
-    }*/
     public void deleteWorkerById(Long id) throws NotFoundException {
 
         if(workerRepository.exitsById(id)){

@@ -7,7 +7,6 @@ import com.example.app.entity.Computer;
 import com.example.app.exceptions.NotFoundException;
 import com.example.app.mapper.ComputerMapper;
 import com.example.app.repository.ComputerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
