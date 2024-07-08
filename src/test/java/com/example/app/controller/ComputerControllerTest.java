@@ -29,16 +29,20 @@ public class ComputerControllerTest {
     @InjectMocks
     private ComputerController computerController;
 
+    private ObjectMapper objectMapper;
+
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.openMocks(this);
+        computerService = mock(ComputerService.class);
+        computerController = new ComputerController(computerService);
         mockMvc = MockMvcBuilders.standaloneSetup(computerController).build();
+        objectMapper = new ObjectMapper();
     }
 
     @Test
     public void testCreateComputer() throws Exception {
         IncomingComputerDTO incomingDTO = new IncomingComputerDTO("1235");
-        OutgoingComputerDTO outgoingDTO = new OutgoingComputerDTO(1l,"123456",new OutgoingFieldsWorkerDTO());
+        OutgoingComputerDTO outgoingDTO = new OutgoingComputerDTO(1l,"1235",new OutgoingFieldsWorkerDTO());
 
         when(computerService.saveComputer(any(IncomingComputerDTO.class))).thenReturn(outgoingDTO);
 
@@ -50,6 +54,7 @@ public class ComputerControllerTest {
 
         verify(computerService, times(1)).saveComputer(any(IncomingComputerDTO.class));
     }
+
 
     private static String asJsonString(final Object obj) {
         try {
