@@ -61,6 +61,5 @@ public class WorkerService {
         }else {
             throw new NotFoundException("Worker not found.");
         }
-
     }
 }

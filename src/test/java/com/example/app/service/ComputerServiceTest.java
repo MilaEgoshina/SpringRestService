@@ -13,6 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,4 +115,47 @@ class ComputerServiceTest {
         assertThrows(NotFoundException.class, () -> computerService.findComputerById(id));
         verify(computerRepository, times(1)).findById(id);
     }
+
+    @Test
+    public void deleteComputerById_ExistingComputer() throws NotFoundException {
+        Long id = 1L;
+        when(computerRepository.existsById(id)).thenReturn(true);
+
+        computerService.deleteComputerById(id);
+
+        verify(computerRepository, times(1)).deleteById(id);
+    }
+
+    @Test
+    public void deleteComputerById_NonExistingComputer() {
+        Long id = 1L;
+        when(computerRepository.existsById(id)).thenReturn(false);
+
+        assertThrows(NotFoundException.class, () -> computerService.deleteComputerById(id));
+    }
+
+    @Test
+    public void findAllComputer_ExistingComputers() {
+        List<Computer> computers = new ArrayList<>();
+        computers.add(new Computer());
+        computers.add(new Computer());
+
+        when(computerRepository.findAll()).thenReturn(computers);
+
+        List<OutgoingComputerDTO> result = computerService.findAllComputer();
+
+        assertEquals(2, result.size());
+        verify(computerMapper, times(1)).mapToOutGoingDtos(computers);
+    }
+
+    @Test
+    public void findAllComputer_NoComputers() {
+        when(computerRepository.findAll()).thenReturn(new ArrayList<>());
+
+        List<OutgoingComputerDTO> result = computerService.findAllComputer();
+
+        assertEquals(0, result.size());
+        verify(computerMapper, times(1)).mapToOutGoingDtos(new ArrayList<>());
+    }
+
 }
