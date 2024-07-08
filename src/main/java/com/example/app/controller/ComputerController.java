@@ -18,7 +18,6 @@ public class ComputerController {
 
     private final ComputerService computerService;
 
-    @Autowired
     public ComputerController(ComputerService computerService) {
         this.computerService = computerService;
     }

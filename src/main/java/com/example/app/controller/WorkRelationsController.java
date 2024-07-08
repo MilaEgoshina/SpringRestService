@@ -18,7 +18,6 @@ public class WorkRelationsController {
 
     private final WorkRelationsService workRelationsService;
 
-    @Autowired
     public WorkRelationsController(WorkRelationsService workRelationsService) {
         this.workRelationsService = workRelationsService;
 }

@@ -16,7 +16,6 @@ public class WorkerController {
 
     private final WorkerService workerService;
 
-    @Autowired
     public WorkerController(WorkerService workerService) {
         this.workerService = workerService;
     }
