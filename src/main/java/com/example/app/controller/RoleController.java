@@ -5,7 +5,6 @@ import com.example.app.dto.OutgoingRoleDTO;
 import com.example.app.dto.UpdateRoleDTO;
 import com.example.app.exceptions.NotFoundException;
 import com.example.app.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<OutgoingRoleDTO>> getAllRoles(){
 
         List<OutgoingRoleDTO> roleDTOS = roleService.findAllRoles();
@@ -59,7 +58,7 @@ public class RoleController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<String> updatePole(@RequestBody UpdateRoleDTO updateRoleDTO){
 
         try {

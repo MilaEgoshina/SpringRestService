@@ -5,7 +5,6 @@ import com.example.app.dto.OutgoingWorkRelationsDTO;
 import com.example.app.dto.UpdateWorkRelationsDTO;
 import com.example.app.exceptions.NotFoundException;
 import com.example.app.service.WorkRelationsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class WorkRelationsController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<OutgoingWorkRelationsDTO>> getAllWorkRelations(){
         List<OutgoingWorkRelationsDTO> workRelationsDTOList = workRelationsService.findAllWorkRelations();
         return new ResponseEntity<>(workRelationsDTOList, HttpStatus.OK);
@@ -73,7 +72,7 @@ public class WorkRelationsController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<String> updateWorkRelations(@RequestBody UpdateWorkRelationsDTO updateWorkRelationsDTO) {
         try {
             workRelationsService.updateWorkRelations(updateWorkRelationsDTO);

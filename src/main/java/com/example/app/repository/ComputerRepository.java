@@ -21,7 +21,6 @@ public interface ComputerRepository extends JpaRepository<Computer, Long> {
     @Query("SELECT с FROM Computer с WHERE с.serialNumber = :serialNumber")
     Optional<Computer> findBySerialNumber(String number);
 
-    Optional<Computer> findById(Long id);
 
     boolean existsById(Long id);
 }

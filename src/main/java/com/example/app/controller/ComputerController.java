@@ -32,7 +32,7 @@ public class ComputerController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<OutgoingComputerDTO>> getAllComputers(){
         List<OutgoingComputerDTO> computerDTOList = computerService.findAllComputer();
         return new ResponseEntity<>(computerDTOList,HttpStatus.OK);
@@ -48,7 +48,7 @@ public class ComputerController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<String> updateComputer(@RequestBody UpdateComputerDTO computerDTO) {
         try {
             computerService.updateComputer(computerDTO);

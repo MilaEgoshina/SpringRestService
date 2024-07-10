@@ -9,7 +9,5 @@ import java.util.Optional;
 @Repository
 public interface WorkRelationsRepository extends JpaRepository<WorkRelations,Long> {
 
-    Optional<WorkRelations> findById(Long id);
-
     boolean exitsById(Long id);
 }

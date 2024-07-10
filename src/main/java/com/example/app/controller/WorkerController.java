@@ -3,7 +3,6 @@ package com.example.app.controller;
 import com.example.app.dto.*;
 import com.example.app.exceptions.NotFoundException;
 import com.example.app.service.WorkerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,7 @@ public class WorkerController {
     public WorkerController(WorkerService workerService) {
         this.workerService = workerService;
     }
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<OutgoingFullWorkerDTO>> getAllWorkers(){
         List<OutgoingFullWorkerDTO> workerDTOList = workerService.findAllWorker();
         return new ResponseEntity<>(workerDTOList, HttpStatus.OK);
@@ -55,7 +54,7 @@ public class WorkerController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<String> updateWorker(@RequestBody UpdateWorkerDTO updateWorkerDTO){
         try {
             workerService.updateWorker(updateWorkerDTO);
